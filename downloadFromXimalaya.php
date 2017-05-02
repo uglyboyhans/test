@@ -101,7 +101,7 @@ function getFile($url, $save_dir = '', $filename = '')
     if (0 !== strrpos($save_dir, '/')) {
         $save_dir.= '/';
     }
-    //创建保存目录  
+    //创建保存目录
     if (!file_exists($save_dir) && !mkdir($save_dir, 0777, true)) {
         return false;
     }
@@ -110,8 +110,8 @@ function getFile($url, $save_dir = '', $filename = '')
     readfile($url);
     $content = ob_get_contents();
     ob_end_clean();
-    //echo $content;  
-    $size = strlen($content); //文件大小  
+    //echo $content;
+    $size = strlen($content); //文件大小
     $fp2 = fopen($save_dir . $filename, "wb");
     fwrite($fp2, $content);
     fclose($fp2);
@@ -124,7 +124,7 @@ function getFile($url, $save_dir = '', $filename = '')
 }
 
 //run
-$url = isset($argv[0]) ? $argv[0] : null;
-$url = empty($url) ? $url : $_GET['url'];
+$url = isset($argv[1]) ? $argv[1] : null;
+$url = !empty($url) ? $url : $_GET['url'];
 $dirPath = "D:/nihonngo/getFile";
 download($url, $dirPath);
